@@ -1,8 +1,10 @@
-# Doro 网站宠物示例 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# Doro 网站宠物示例 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-一个简单的HTML网站宠物示例，遵循MIT开源许可证。
+这是一个简单的 HTML 示例，演示了如何创建一个跟随鼠标移动的网站宠物。
 
-这是一个简单的 HTML 示例，演示了如何创建一个跟随鼠标移动并在鼠标按下时播放动画的网站宠物。
+![doro](https://github.com/user-attachments/assets/30bc76cf-92f5-42ba-9dd0-ab1f5addc421)
+
 
 ## 文件结构
 
