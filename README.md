@@ -1,4 +1,6 @@
-# Doro 网站宠物示例
+# Doro 网站宠物示例 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+一个简单的HTML网站宠物示例，遵循MIT开源许可证。
 
 这是一个简单的 HTML 示例，演示了如何创建一个跟随鼠标移动并在鼠标按下时播放动画的网站宠物。
 
@@ -43,3 +45,7 @@ doro-pet-example/
 *   **调整大小**: 修改 CSS 中 `#mouse-pet` 的 `width` 和 `height`。
 *   **调整偏移**: 修改 JavaScript 中的 `offsetX` 和 `offsetY` 值，改变图片相对于鼠标指针的位置。
 *   **移动速度/平滑度**: 修改 CSS 中 `#mouse-pet` 的 `transition` 属性值。
+
+## 许可证
+
+采用 [MIT 许可证](LICENSE) 开源。
