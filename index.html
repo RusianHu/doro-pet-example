@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doro 网站宠物示例</title>
+    <style>
+        body {
+            min-height: 100vh; /* 确保页面足够高以测试滚动 */
+            margin: 0;
+            background-color: #f0f0f0; /* 简单背景色 */
+            font-family: sans-serif;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        p {
+            text-align: center;
+            color: #555;
+        }
+
+        /* 鼠标宠物样式 */
+        #mouse-pet {
+            position: fixed; /* 使用 fixed 定位，使其相对于视口 */
+            width: 50px; /* 根据 GIF 调整大小 */
+            height: auto;
+            pointer-events: none; /* 允许鼠标事件穿透 GIF */
+            z-index: 9999; /* 确保在最顶层 */
+            display: block; /* 初始显示 */
+            transition: top 0.05s linear, left 0.05s linear; /* 平滑移动 */
+            top: -100px; /* 初始位置在屏幕外 */
+            left: -100px;
+            /* 防止图片被选中 */
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Doro 网站宠物示例</h1>
+    <p>移动鼠标看看效果，按住鼠标左键或右键播放动画。</p>
+
+    <!-- 鼠标宠物 -->
+    <img id="mouse-pet" src="doro.gif" alt="Mouse Pet">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const pet = document.getElementById('mouse-pet');
+            // 检查 pet 元素是否存在
+            if (pet) {
+                const originalSrc = pet.src; // 保存原始 GIF 路径 (不含时间戳)
+                const animatedSrcBase = "doro.gif"; // 基础路径
+
+                // 更新宠物位置
+                document.addEventListener('mousemove', (e) => {
+                    const offsetX = 10; // X轴偏移
+                    const offsetY = 10; // Y轴偏移
+                    // 使用 requestAnimationFrame 优化性能
+                    window.requestAnimationFrame(() => {
+                        pet.style.left = `${e.clientX + offsetX}px`;
+                        pet.style.top = `${e.clientY + offsetY}px`;
+                    });
+                });
+
+                // 按下鼠标时播放动画
+                document.addEventListener('mousedown', (e) => {
+                    // 检查是否是左键(0)或右键(2)
+                    if (e.button === 0 || e.button === 2) {
+                        // 添加时间戳强制重新加载播放
+                        pet.src = `${animatedSrcBase}?t=${new Date().getTime()}`;
+                    }
+                });
+
+                // 松开鼠标时停止动画（重置为原始src）
+                document.addEventListener('mouseup', () => {
+                    // 只有当 src 包含时间戳时才重置
+                    if (pet.src.includes('?t=')) {
+                        pet.src = originalSrc;
+                    }
+                });
+
+                // 可选：处理鼠标移出窗口的情况
+                document.addEventListener('mouseleave', () => {
+                    // 鼠标移出也停止动画
+                    if (pet.src.includes('?t=')) {
+                        pet.src = originalSrc;
+                    }
+                });
+
+                // 可选：阻止右键菜单，因为右键也触发动画
+                pet.addEventListener('contextmenu', (e) => {
+                    e.preventDefault(); // 阻止宠物图片的右键菜单
+                });
+                // 如果需要阻止整个页面的右键菜单，取消下面这行注释
+                // document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+            } else {
+                console.error("Mouse pet element (#mouse-pet) not found.");
+            }
+        });
+    </script>
+</body>
+</html>
